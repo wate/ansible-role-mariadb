@@ -1,2 +1,6 @@
 ---
-# defaults file for mariadb
+mariadb_packages:
+  - mariadb
+  - mariadb-server
+
+mariadb_root_password: root
