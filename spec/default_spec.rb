@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'role mailcatcher' do
+describe 'role mariadb' do
   property['mariadb_packages'].each do |pkg|
     describe package(pkg) do
       it { should be_installed }
