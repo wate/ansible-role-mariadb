@@ -3,7 +3,7 @@ language: python
 services: docker
 env:
   global:
-  - ROLE_NAME: mariadb
+    - ROLE_NAME: mariadb
 install:
   - pip install molecule yamllint ansible-lint docker
 before_script:
