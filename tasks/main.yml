@@ -21,6 +21,7 @@
     path: /etc/my.cnf
     regexp: '^!includedir '
     line: "!includedir /etc/my.cnf.d"
+  notify: restart mariadb
 - name: create MariaDB setting files
   template:
     src: custom.cnf.j2
