@@ -16,6 +16,11 @@
 - name: install dependency packages
   yum:
     name: "{{ mariadb_dependency_packages }}"
+- name: Ensure includedir setting
+  lineinfile:
+    path: /etc/my.cnf
+    regexp: '^!includedir '
+    line: "!includedir /etc/my.cnf.d"
 - name: create MariaDB setting files
   template:
     src: custom.cnf.j2
