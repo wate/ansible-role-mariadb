@@ -1,7 +1,9 @@
 ---
 mariadb_packages:
-  - mariadb
+  - mariadb-client
   - mariadb-server
+  - mariadb-backup
+  # - mariadb-plugin-mroonga
 
 mariadb_root_password: rootP@55w0rd
 
