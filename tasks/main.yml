@@ -1,6 +1,7 @@
 ---
 - name: install MariaDB packages
   apt:
+    update_cache: true
     name: "{{ mariadb_packages }}"
 - name: include package name vars
   include_vars: "{{ lookup('first_found', params) }}"
