@@ -3,9 +3,9 @@ mariadb_packages:
   - mariadb-client
   - mariadb-server
   - mariadb-backup
-  - mysqltuner
   - mariadb-plugin-mroonga
   - groonga-tokenizer-mecab
+  - mysqltuner
 
 mariadb_root_password: rootP@55w0rd
 
