@@ -1,7 +1,4 @@
 ---
-- name: install dependency packages
-  apt:
-    name: "{{ mariadb_expect_dependency_packages  }}"
 - name: execute mysql_secure_installation
   expect:
     command: mysql_secure_installation
