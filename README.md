@@ -1,17 +1,65 @@
 mariadb
-=========
+=================
 
-[![Build Status](https://travis-ci.org/wate/ansible-role-mariadb.svg?branch=master)](https://travis-ci.org/wate/ansible-role-mariadb)
+setup MariaDB
 
-MariaDBのインストールとセットアップを行います
+OS Platform
+-----------------
+
+### Debian
+
+- bullseye
+- buster
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+### `mariadb_packages`
+
+インストールするパッケージ
+
+### `mariadb_root_password`
+
+rootのパスワード
+
+### `mariadb_default_charset`
+
+charsetの初期値
+
+### `mariadb_default_collation`
+
+collation初期値
+
+### `mariadb_databases`
+
+データベースの設定
+
+### `mariadb_users`
+
+データベースユーザーの設定
+
+### `mariadb_max_connections`
+
+max_connectionsの設定値
+
+### `mariadb_max_table_use_in_query`
+
+table_open_cacheの設定値の自動算出に利用
+
+### `mariadb_innodb_baffer_pool_rate`
+
+innodb_buffer_pool_sizeの設定値の自動算出に利用
+
+### `mariadb_myisam_key_baffer_rate`
+
+key_buffer_sizeの設定値の自動算出に利用
+
+### `mariadb_mysqld_cfg`
+
+MariaDBの設定
 
 Example Playbook
-----------------
+--------------
 
 ```yaml
 - hosts: servers
@@ -20,6 +68,6 @@ Example Playbook
 ```
 
 License
--------
+--------------
 
 Apache License 2.0
