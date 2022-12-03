@@ -4,8 +4,8 @@
     name: mariadb
     state: started
     enabled: true
-- name: allow MariaDB port
-  ufw:
+- name: Ensure allow MariaDB port
+  community.general.ufw:
     rule: allow
     port: "3306"
     proto: tcp

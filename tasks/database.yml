@@ -1,6 +1,6 @@
 ---
-- name: create / remove databases
-  mysql_db:
+- name: Create/remove databases
+  community.mysql.mysql_db:
     name: "{{ item.name }}"
     encoding: "{{ item.encoding | default(mariadb_default_charset) }}"
     collation: "{{ item.collation | default(mariadb_default_collation) }}"

@@ -1,4 +1,7 @@
 ---
+## -------------------
+## インストールするパッケージ
+## -------------------
 mariadb_packages:
   - mariadb-client
   - mariadb-server-mroonga
@@ -6,40 +9,70 @@ mariadb_packages:
   - groonga-tokenizer-mecab
   - mysqltuner
 
+## -------------------
+## rootのパスワード
+## -------------------
 mariadb_root_password: rootP@55w0rd
 
+## -------------------
+## charsetの初期値
+## -------------------
 mariadb_default_charset: utf8mb4
+## -------------------
+## collation初期値
+## -------------------
 mariadb_default_collation: utf8mb4_general_ci
 
+## -------------------
+## データベースの設定
+## -------------------
 mariadb_databases: []
-  # - name: sample
-  #   ## optional database setting
-  #   encoding: utf8mb4
-  #   collation: utf8mb4_general_ci
-  #   state: false
-  #   ## optional user setting
-  #   hosts:
-  #     - "127.0.0.1"
-  #     - localhost
-  #   user: sample_user
-  #   password: dsample_p@55w0rd
+# - name: sample
+#   ## optional database setting
+#   encoding: utf8mb4
+#   collation: utf8mb4_general_ci
+#   state: false
+#   ## optional user setting
+#   hosts:
+#     - "127.0.0.1"
+#     - localhost
+#   user: sample_user
+#   password: dsample_p@55w0rd
 
+## -------------------
+## データベースユーザーの設定
+## -------------------
 mariadb_users: []
-  # - name: mackerel_db_user
-  #   password: mackerel_db_password
-  #   hosts:
-  #     - "127.0.0.1"
-  #     - "::1"
-  #     - localhost
-  #   privs:
-  #     - "*.*:SUPER"
-  #   state: true
+# - name: mackerel_db_user
+#   password: mackerel_db_password
+#   hosts:
+#     - "127.0.0.1"
+#     - "::1"
+#     - localhost
+#   privs:
+#     - "*.*:SUPER"
+#   state: true
 
+## -------------------
+## max_connectionsの設定値
+## -------------------
 mariadb_max_connections: 100
+## -------------------
+## table_open_cacheの設定値の自動算出に利用
+## -------------------
 mariadb_max_table_use_in_query: 3
+## -------------------
+## innodb_buffer_pool_sizeの設定値の自動算出に利用
+## -------------------
 mariadb_innodb_baffer_pool_rate: 50
+## -------------------
+## key_buffer_sizeの設定値の自動算出に利用
+## -------------------
 mariadb_myisam_key_baffer_rate: 15
 
+## -------------------
+## MariaDBの設定
+## -------------------
 mariadb_mysqld_cfg:
   ## General
   sql_mode:
