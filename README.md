@@ -23,11 +23,11 @@ rootのパスワード
 
 ### `mariadb_default_charset`
 
-charsetの初期値
+デフォルトのcharset
 
 ### `mariadb_default_collation`
 
-collation初期値
+デフォルトのcollation
 
 ### `mariadb_databases`
 

@@ -15,11 +15,11 @@ mariadb_packages:
 mariadb_root_password: rootP@55w0rd
 
 ## -------------------
-## charsetの初期値
+## デフォルトのcharset
 ## -------------------
 mariadb_default_charset: utf8mb4
 ## -------------------
-## collation初期値
+## デフォルトのcollation
 ## -------------------
 mariadb_default_collation: utf8mb4_general_ci
 
@@ -179,4 +179,4 @@ mariadb_mysqld_cfg:
 #     innodb_flush_log_at_trx_commit = 0
 #     innodb_doublewrite = OFF
 
-# mariadb_allow_connect_other_host: true
+# mariadb_allow_connect_other_host: false
