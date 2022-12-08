@@ -4,10 +4,11 @@
 ## -------------------
 mariadb_packages:
   - mariadb-client
-  - mariadb-server-mroonga
   - mariadb-backup
-  - groonga-tokenizer-mecab
+  - mariadb-server
   - mysqltuner
+  # - mariadb-server-mroonga
+  # - groonga-tokenizer-mecab
 
 ## -------------------
 ## rootのパスワード

@@ -18,6 +18,15 @@
 - name: Install expect dependency packages
   ansible.builtin.apt:
     name: "{{ mariadb_expect_dependency_packages }}"
+- name: Get registerd root password
+  ansible.builtin.command:
+    cmd: cat /root/mariadb_root_password
+    removes: /root/mariadb_root_password
+  changed_when: false
+  register: cat_result
+- name: Set registerd root password variable
+  ansible.builtin.set_fact:
+    mariadb_registerd_root_password: "{{ cat_result.stdout }}"
 - name: Find mysql_secure_installation task file
   ansible.builtin.set_fact:
     mysql_secure_installation_task_file: "{{ lookup('first_found', params, errors='ignore') }}"
@@ -35,3 +44,8 @@
   tags:
     - mysql_secure_installation
     - molecule-idempotence-notest
+- name: Add/update root password file
+  ansible.builtin.template:
+    src: root_password.j2
+    dest: /root/mariadb_root_password
+    mode: "0600"
