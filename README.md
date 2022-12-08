@@ -1,7 +1,7 @@
 mariadb
 =================
 
-setup MariaDB
+Setup MariaDB
 
 OS Platform
 -----------------
@@ -9,6 +9,7 @@ OS Platform
 ### Debian
 
 - bullseye
+- buster
 
 Role Variables
 --------------
