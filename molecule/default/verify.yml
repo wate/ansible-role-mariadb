@@ -1,20 +1,36 @@
 ---
 - name: Verify
   hosts: all
-  gather_facts: true
+  gather_facts: false
   check_mode: true
+  become: true
   tasks:
-    - name: Test client package
-      ansible.builtin.apt:
-        name: mariadb-client
-      register: result
-    - name: Assert client package
+    ## パッケージのテスト
+    - name: Gather the package facts
+      ansible.builtin.package_facts:
+        manager: auto
+    - name: Assert package
       ansible.builtin.assert:
-        that: result is not changed
-    - name: Aest server package
-      ansible.builtin.apt:
-        name: mariadb-server
-      register: result
-    - name: Assert server package
+        that:
+          - ansible_facts.packages['mariadb-server']
+    ## サービスのテスト
+    - name: Populate service facts
+      ansible.builtin.service_facts:
+    - name: Assert service
       ansible.builtin.assert:
-        that: result is not changed
+        that:
+          - ansible_facts.services['mariadb.service']
+          - ansible_facts.services['mariadb.service']['state'] == 'running'
+          - ansible_facts.services['mariadb.service']['status'] == 'enabled'
+    ## 待受ポートのテスト
+    - name: Gather facts on listening ports
+      community.general.listen_ports_facts:
+        command: ss
+    - name: Set assert variables
+      ansible.builtin.set_fact:
+        listen_tcp_posts: "{{ ansible_facts.tcp_listen | map(attribute='port') | unique | list }}"
+        listen_udp_posts: "{{ ansible_facts.udp_listen | map(attribute='port') | unique | list }}"
+    - name: Assert listen port
+      ansible.builtin.assert:
+        that:
+          - 3306 in listen_tcp_posts
