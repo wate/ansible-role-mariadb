@@ -1,5 +1,5 @@
 ---
-- name: MariaDB is active and enabled on system startup
+- name: Service MariaDB is active and enabled on system startup
   ansible.builtin.systemd:
     name: mariadb
     state: started
