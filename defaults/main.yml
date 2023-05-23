@@ -7,6 +7,10 @@ mariadb_packages:
   - mariadb-backup
   - mariadb-server
   - mysqltuner
+  ## -----
+  ## 以下のパッケージをインストールする場合は
+  ## mariadb_append_mroonga_repository変数がtrue担っている必要あり
+  ## -----
   # - mariadb-server-mroonga
   # - groonga-tokenizer-mecab
 
@@ -14,6 +18,11 @@ mariadb_packages:
 ## rootのパスワード
 ## -------------------
 mariadb_root_password: rootP@55w0rd
+
+## -------------------
+## mroongaリポジトリを追加するか否か
+## -------------------
+mariadb_append_mroonga_repository: true
 
 ## -------------------
 ## デフォルトのcharset

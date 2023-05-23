@@ -6,11 +6,14 @@
       - ca-certificates
       - curl
       - gnupg
-- name: Get apt-source package
-  ansible.builtin.get_url:
-    url: https://packages.groonga.org/debian/groonga-apt-source-latest-{{ ansible_facts.distribution_release }}.deb
-    dest: /usr/local/src/groonga-apt-source-latest-{{ ansible_facts.distribution_release }}.deb
-    mode: "0644"
-- name: Add mroonga repository
-  ansible.builtin.apt:
-    deb: /usr/local/src/groonga-apt-source-latest-{{ ansible_facts.distribution_release }}.deb
+- name: Append mroonga repository
+  when: mariadb_append_mroonga_repository
+  block:
+    - name: Get apt-source package
+      ansible.builtin.get_url:
+        url: https://packages.groonga.org/debian/groonga-apt-source-latest-{{ ansible_facts.distribution_release }}.deb
+        dest: /usr/local/src/groonga-apt-source-latest-{{ ansible_facts.distribution_release }}.deb
+        mode: "0644"
+    - name: Add mroonga repository
+      ansible.builtin.apt:
+        deb: /usr/local/src/groonga-apt-source-latest-{{ ansible_facts.distribution_release }}.deb
