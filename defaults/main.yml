@@ -22,7 +22,7 @@ mariadb_root_password: rootP@55w0rd
 ## -------------------
 ## mroongaリポジトリを追加するか否か
 ## -------------------
-mariadb_append_mroonga_repository: true
+mariadb_append_mroonga_repository: false
 
 ## -------------------
 ## デフォルトのcharset
