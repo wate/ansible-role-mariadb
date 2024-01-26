@@ -24,7 +24,7 @@ mariadb_users:
       - ::1
       - localhost
     privs:
-      - "*.*:PROCESS,REPLICATION CLIENT"
+      - "*.*:PROCESS,SUPER,REPLICATION CLIENT"
   - name: app_test
     password: app_test_p455w0rd
     hosts:
