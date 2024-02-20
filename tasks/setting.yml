@@ -10,6 +10,13 @@
     dest: "{{ mariadb_config_dir }}/99-custom.cnf"
     mode: "0644"
   notify: restart mariadb
+- name: Create log directory
+  ansible.builtin.file:
+    path: /var/log/mysql
+    state: directory
+    mode: "0755"
+    owner: mysql
+    group: mysql
 - name: MariaDB is active and enabled on system startup
   ansible.builtin.systemd:
     name: mariadb
