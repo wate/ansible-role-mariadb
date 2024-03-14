@@ -18,7 +18,7 @@
     owner: mysql
     group: mysql
 - name: MariaDB is active and enabled on system startup
-  ansible.builtin.systemd:
+  ansible.builtin.systemd_service:
     name: mariadb
     state: started
     enabled: true
