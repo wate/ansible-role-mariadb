@@ -37,31 +37,31 @@ mariadb_default_collation: utf8mb4_general_ci
 ## データベースの設定
 ## -------------------
 mariadb_databases: []
-# - name: sample
-#   ## optional database setting
-#   encoding: utf8mb4
-#   collation: utf8mb4_general_ci
-#   state: false
-#   ## optional user setting
-#   hosts:
-#     - "127.0.0.1"
-#     - localhost
-#   user: sample_user
-#   password: dsample_p@55w0rd
+  # - name: sample
+  #   ## optional database setting
+  #   encoding: utf8mb4
+  #   collation: utf8mb4_general_ci
+  #   state: false
+  #   ## optional user setting
+  #   hosts:
+  #     - "127.0.0.1"
+  #     - localhost
+  #   user: sample_user
+  #   password: sample_p@55w0rd
 
 ## -------------------
 ## データベースユーザーの設定
 ## -------------------
 mariadb_users: []
-# - name: mackerel_db_user
-#   password: mackerel_db_password
-#   hosts:
-#     - "127.0.0.1"
-#     - "::1"
-#     - localhost
-#   privs:
-#       - "*.*:SUPER,PROCESS,REPLICATION CLIENT,SLAVE MONITOR"
-#   state: true
+  # - name: mackerel_db_user
+  #   password: mackerel_db_password
+  #   hosts:
+  #     - "127.0.0.1"
+  #     - "::1"
+  #     - localhost
+  #   privs:
+  #       - "*.*:SUPER,PROCESS,REPLICATION CLIENT,SLAVE MONITOR"
+  #   state: true
 
 ## -------------------
 ## max_connectionsの設定値
