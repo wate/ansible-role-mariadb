@@ -12,4 +12,4 @@
       Remove test database and access to it?: "y"
       Reload privilege tables now?: "y"
   no_log: true
-  when: mariadb_root_password != mariadb_root_password
+  when: mariadb_registered_root_password | default('') != mariadb_root_password

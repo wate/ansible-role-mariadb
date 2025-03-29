@@ -1,0 +1,15 @@
+baffer
+direnv
+dotenv
+firewalld
+geerlingguy
+gnupg
+groonga
+mariadb
+mecab
+mroonga
+mssql
+mysql
+mysqltuner
+postgres
+postgresql

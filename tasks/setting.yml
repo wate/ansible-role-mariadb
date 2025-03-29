@@ -25,15 +25,15 @@
 - name: Install expect dependency packages
   ansible.builtin.apt:
     name: "{{ mariadb_expect_dependency_packages }}"
-- name: Get registerd root password
+- name: Get registered root password
   ansible.builtin.command:
     cmd: cat /root/mariadb_root_password
     removes: /root/mariadb_root_password
   changed_when: false
   register: cat_result
-- name: Set registerd root password variable
+- name: Set registered root password variable
   ansible.builtin.set_fact:
-    mariadb_registerd_root_password: "{{ cat_result.stdout }}"
+    mariadb_registered_root_password: "{{ cat_result.stdout }}"
 - name: Find mysql_secure_installation task file
   ansible.builtin.set_fact:
     mysql_secure_installation_task_file: "{{ lookup('first_found', params, errors='ignore') }}"
@@ -46,7 +46,8 @@
       paths:
         - tasks/setting
 - name: Execute mysql_secure_installation
-  ansible.builtin.include_tasks: "{{ mysql_secure_installation_task_file }}"
+  ansible.builtin.include_tasks:
+    file: "{{ mysql_secure_installation_task_file }}"
   when: mysql_secure_installation_task_file | length > 0
   tags:
     - mysql_secure_installation
