@@ -9,4 +9,5 @@
     rule: allow
     port: "3306"
     proto: tcp
-  when: mariadb_allow_connect_other_host | default(false)
+    from_ip: "{{ mariadb_allow_connect_other_host | default('any') }}"
+  when: mariadb_allow_connect_other_host is defined

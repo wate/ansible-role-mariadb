@@ -1,0 +1,17 @@
+behaviour
+binlog
+cgroupns
+cpus
+dearmor
+doublewrite
+envrc
+gtid
+includedir
+innodb
+memtotal
+myisam
+mysqld
+notest
+pexpect
+privs
+pymysql

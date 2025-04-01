@@ -9,9 +9,9 @@ mariadb_packages:
   - mysqltuner
   ## -----
   ## 以下のパッケージをインストールする場合は
-  ## mariadb_append_mroonga_repository変数がtrue担っている必要あり
+  ## mariadb_append_mroonga_repository変数がtrueになっている必要があります
   ## -----
-  # - mariadb-server-mroonga
+  # - mariadb-mroonga
   # - groonga-tokenizer-mecab
 
 ## -------------------
@@ -28,6 +28,7 @@ mariadb_append_mroonga_repository: false
 ## デフォルトのcharset
 ## -------------------
 mariadb_default_charset: utf8mb4
+
 ## -------------------
 ## デフォルトのcollation
 ## -------------------
@@ -67,14 +68,17 @@ mariadb_users: []
 ## max_connectionsの設定値
 ## -------------------
 mariadb_max_connections: 100
+
 ## -------------------
 ## table_open_cacheの設定値の自動算出に利用
 ## -------------------
 mariadb_max_table_use_in_query: 3
+
 ## -------------------
 ## innodb_buffer_pool_sizeの設定値の自動算出に利用
 ## -------------------
 mariadb_innodb_baffer_pool_rate: 50
+
 ## -------------------
 ## key_buffer_sizeの設定値の自動算出に利用
 ## -------------------
@@ -189,4 +193,9 @@ mariadb_mysqld_cfg:
 #     innodb_flush_log_at_trx_commit = 0
 #     innodb_doublewrite = OFF
 
-# mariadb_allow_connect_other_host: false
+## -------------------
+## サーバーへの接続を許可するIPアドレス
+## -------------------
+# mariadb_allow_connect_other_host: 10.0.0.0/8
+# mariadb_allow_connect_other_host: 172.16.0.0/12
+# mariadb_allow_connect_other_host: 192.168.0.0/16

@@ -1,5 +1,13 @@
 ---
-mariadb_append_mroonga_repository: false
+mariadb_append_mroonga_repository: true
+
+mariadb_packages:
+  - mariadb-client
+  - mariadb-backup
+  - mariadb-server
+  - mysqltuner
+  - mariadb-mroonga
+  - groonga-tokenizer-mecab
 
 mariadb_databases:
   - name: app_dev
