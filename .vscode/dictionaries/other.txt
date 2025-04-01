@@ -12,4 +12,6 @@ memtotal
 myisam
 mysqld
 notest
+pexpect
 privs
+pymysql
