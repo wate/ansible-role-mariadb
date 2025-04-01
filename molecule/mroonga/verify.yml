@@ -11,6 +11,7 @@
     - name: Assert package
       ansible.builtin.assert:
         that:
+          - ansible_facts.packages['mariadb-mroonga']
           - ansible_facts.packages['mariadb-server']
     ## サービスのテスト
     - name: Populate service facts
@@ -33,3 +34,15 @@
       ansible.builtin.assert:
         that:
           - 3306 in listen_tcp_posts
+    - name: Get support engines
+      community.mysql.mysql_query:
+        query: SHOW ENGINES
+        login_unix_socket: /run/mysqld/mysqld.sock
+      register: engines_result
+    - name: Set assert variable
+      ansible.builtin.set_fact:
+        mariadb_engines: "{{ engines_result.query_result[0] | map(attribute='Engine') }}"
+    - name: Assert Mroonga engine
+      ansible.builtin.assert:
+        that:
+          - "'Mroonga' in mariadb_engines"

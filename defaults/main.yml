@@ -9,9 +9,9 @@ mariadb_packages:
   - mysqltuner
   ## -----
   ## 以下のパッケージをインストールする場合は
-  ## mariadb_append_mroonga_repository変数がtrueになっている必要あり
+  ## mariadb_append_mroonga_repository変数がtrueになっている必要があります
   ## -----
-  # - mariadb-server-mroonga
+  # - mariadb-mroonga
   # - groonga-tokenizer-mecab
 
 ## -------------------

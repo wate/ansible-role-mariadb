@@ -11,9 +11,23 @@
   block:
     - name: Get apt-source package
       ansible.builtin.get_url:
+        url: https://apache.jfrog.io/artifactory/arrow/debian/apache-arrow-apt-source-latest-{{ ansible_facts.distribution_release }}.deb
+        dest: /usr/local/src/apache-arrow-apt-source-latest-{{ ansible_facts.distribution_release }}.deb
+        mode: "0644"
+    - name: Add apache-arrow repository
+      ansible.builtin.apt:
+        deb: /usr/local/src/apache-arrow-apt-source-latest-{{ ansible_facts.distribution_release }}.deb
+      register: add_apache_arrow_repo
+    - name: Get apt-source package
+      ansible.builtin.get_url:
         url: https://packages.groonga.org/debian/groonga-apt-source-latest-{{ ansible_facts.distribution_release }}.deb
         dest: /usr/local/src/groonga-apt-source-latest-{{ ansible_facts.distribution_release }}.deb
         mode: "0644"
     - name: Add mroonga repository
       ansible.builtin.apt:
         deb: /usr/local/src/groonga-apt-source-latest-{{ ansible_facts.distribution_release }}.deb
+      register: add_mroonga_repo
+    - name: Update apt cache
+      ansible.builtin.apt:
+        update_cache: true
+      when: add_apache_arrow_repo is changed or add_mroonga_repo is changed
