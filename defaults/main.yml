@@ -28,6 +28,7 @@ mariadb_append_mroonga_repository: false
 ## デフォルトのcharset
 ## -------------------
 mariadb_default_charset: utf8mb4
+
 ## -------------------
 ## デフォルトのcollation
 ## -------------------

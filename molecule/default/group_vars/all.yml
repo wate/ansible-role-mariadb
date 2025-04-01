@@ -1,4 +1,6 @@
 ---
+mariadb_append_mroonga_repository: false
+
 mariadb_databases:
   - name: app_dev
     password: app_dev_p455w0rd
@@ -18,7 +20,7 @@ mariadb_databases:
 
 mariadb_users:
   - name: mackerel_agent
-    password: m4ckerel_4gent_p455w0rd
+    password: mackerel_agent_p455w0rd
     hosts:
       - 127.0.0.1
       - ::1

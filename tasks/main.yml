@@ -10,37 +10,33 @@
         - "{{ ansible_facts.os_family }}.yml"
       paths:
         - vars
+  tags: role_mariadb_include_vars
 - name: Include variable file
   ansible.builtin.include_vars:
     file: "{{ variable_file }}"
   when: variable_file | length > 0
+  tags: role_mariadb_include_vars
 - name: Add repository
   ansible.builtin.import_tasks:
     file: repository.yml
-  tags:
-    - role_mariadb_repository
+  tags: role_mariadb_repository
 - name: Install packages
   ansible.builtin.import_tasks:
     file: package.yml
-  tags:
-    - role_mariadb_package
+  tags: role_mariadb_package
 - name: Create/update setting
   ansible.builtin.import_tasks:
     file: setting.yml
-  tags:
-    - role_mariadb_setting
+  tags: role_mariadb_setting
 - name: Manage database
   ansible.builtin.import_tasks:
     file: database.yml
-  tags:
-    - role_mariadb_database
+  tags: role_mariadb_database
 - name: Manage user
   ansible.builtin.import_tasks:
     file: user.yml
-  tags:
-    - role_mariadb_user
+  tags: role_mariadb_user
 - name: Setup service
   ansible.builtin.import_tasks:
     file: service.yml
-  tags:
-    - role_mariadb_service
+  tags: role_mariadb_service
