@@ -11,16 +11,20 @@
     - name: Assert package
       ansible.builtin.assert:
         that:
-          - ansible_facts.packages['mariadb-server']
+          - ansible_facts.packages['mariadb-server'] is defined
+        fail_msg: "MariaDB server package is not installed"
+        success_msg: "MariaDB server package is installed"
     ## サービスのテスト
     - name: Populate service facts
       ansible.builtin.service_facts:
     - name: Assert service
       ansible.builtin.assert:
         that:
-          - ansible_facts.services['mariadb.service']
+          - ansible_facts.services['mariadb.service'] is defined
           - ansible_facts.services['mariadb.service']['state'] == 'running'
           - ansible_facts.services['mariadb.service']['status'] == 'enabled'
+        fail_msg: "MariaDB service is not running or not enabled"
+        success_msg: "MariaDB service is running and enabled"
     ## 待受ポートのテスト
     - name: Gather facts on listening ports
       community.general.listen_ports_facts:
@@ -33,3 +37,33 @@
       ansible.builtin.assert:
         that:
           - 3306 in listen_tcp_posts
+        fail_msg: "MariaDB is not listening on port 3306"
+        success_msg: "MariaDB is listening on port 3306"
+    ## 設定ファイルのテスト
+    - name: Check MariaDB custom configuration file
+      ansible.builtin.stat:
+        path: /etc/mysql/mariadb.conf.d/99-custom.cnf
+      register: mariadb_custom_conf
+    - name: Assert MariaDB custom configuration file exists
+      ansible.builtin.assert:
+        that: mariadb_custom_conf.stat.exists
+        fail_msg: "MariaDB custom configuration file not found"
+        success_msg: "MariaDB custom configuration file exists"
+    - name: Read MariaDB custom configuration
+      ansible.builtin.command:
+        cmd: cat /etc/mysql/mariadb.conf.d/99-custom.cnf
+      register: mariadb_conf_content
+      changed_when: false
+    - name: Assert MariaDB character set configuration
+      ansible.builtin.assert:
+        that:
+          - "'character-set-server = utf8mb4' in mariadb_conf_content.stdout"
+          - "'default-character-set = utf8mb4' in mariadb_conf_content.stdout"
+        fail_msg: "MariaDB character set not properly configured"
+        success_msg: "MariaDB character set is properly configured"
+    - name: Assert MariaDB collation configuration
+      ansible.builtin.assert:
+        that:
+          - "'collation-server = utf8mb4_general_ci' in mariadb_conf_content.stdout"
+        fail_msg: "MariaDB collation not properly configured"
+        success_msg: "MariaDB collation is properly configured"
