@@ -48,7 +48,9 @@
 - name: Execute mysql_secure_installation
   ansible.builtin.include_tasks:
     file: "{{ mysql_secure_installation_task_file }}"
-  when: mysql_secure_installation_task_file | length > 0
+  when:
+    - mysql_secure_installation_task_file is not none
+    - mysql_secure_installation_task_file | length > 0
   tags:
     - mysql_secure_installation
     - molecule-idempotence-notest

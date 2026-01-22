@@ -14,12 +14,10 @@
 - name: Include variable file
   ansible.builtin.include_vars:
     file: "{{ variable_file }}"
-  when: variable_file | length > 0
+  when:
+    - variable_file is not none
+    - variable_file | length > 0
   tags: role_mariadb_include_vars
-- name: Add repository
-  ansible.builtin.import_tasks:
-    file: repository.yml
-  tags: role_mariadb_repository
 - name: Install packages
   ansible.builtin.import_tasks:
     file: package.yml

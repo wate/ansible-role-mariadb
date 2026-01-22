@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+version: '3'
+tasks:
+  notify:
+    internal: true
+    silent: true
+    vars:
+      MESSAGE: '{{.MESSAGE | default "Test completed"}}'
+    cmds:
+      - osascript -e 'display notification "{{.MESSAGE}}" with title "Molecule Test"'
+      - afplay /System/Library/Sounds/Glass.aiff
+  default:
+    desc: Run Molecule tests for default scenario
+    cmds:
+      - molecule test
+      - task: notify
+        vars:
+          MESSAGE: "Default scenario test completed"
+  all:
+    desc: Run Molecule tests for all scenarios (sequential)
+    cmds:
+      - task: default
+      - task: notify
+        vars:
+          MESSAGE: "All scenario tests completed"
