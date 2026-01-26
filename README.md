@@ -26,10 +26,6 @@ Role Variables
 
 rootのパスワード
 
-#### `mariadb_append_mroonga_repository`
-
-mroongaリポジトリを追加するか否か
-
 #### `mariadb_default_charset`
 
 デフォルトのcharset
