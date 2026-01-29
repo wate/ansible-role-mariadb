@@ -155,7 +155,7 @@ mariadb_mysqld_cfg:
   # min_examined_row_limit: 0
   # log_queries_not_using_indexes: false
   # log_slow_admin_statements: false
-  slow_query_log_file: /var/log/mysql/mysql-slow.log
+  slow_query_log_file: /var/log/mysql/slow-query.log
   # general_log: false
   # general_log_file: /var/log/mysql/general.log
   # -----------------
