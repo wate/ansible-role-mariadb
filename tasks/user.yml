@@ -1,6 +1,6 @@
 ---
 - name: Create MariaDB users(on mariadb_databases variable)
-  community.mysql.mysql_user:
+  ansible.mariadb.mariadb_user:
     name: "{{ item.0.user | default(item.0.name) }}"
     password: "{{ item.0.password | default(omit) }}"
     host: "{{ item.1 }}"
@@ -9,7 +9,7 @@
   loop: "{{ lookup('subelements', mariadb_databases, 'hosts', {'skip_missing': True}) }}"
   no_log: true
 - name: Create/remove MariaDB users
-  community.mysql.mysql_user:
+  ansible.mariadb.mariadb_user:
     name: "{{ item.0.name }}"
     password: "{{ item.0.password }}"
     host: "{{ item.1 }}"
